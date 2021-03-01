@@ -32,6 +32,12 @@ BezierCurve<T>::BezierCurve(std::vector<Point<T>> nodes, double max_t) {
 }
 
 template <typename T>
+void BezierCurve<T>::start(double dt) {
+    reset()
+    t += dt;
+}
+
+template <typename T>
 void BezierCurve<T>::update(double dt) {
     if (is_running()) {
         t += dt;

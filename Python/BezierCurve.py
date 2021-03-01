@@ -1,4 +1,4 @@
-from ..Point import Point
+import Point
 
 def get_distance(start, end):
     return [end[0] - start[0], end[1] - start[1]]
@@ -13,7 +13,7 @@ def bezier_curve(nodes, ratio):
     new_nodes = []
 
     for i in range(len(nodes) - 1):
-        new_nodes.append(nodes[i] + (nodes[i] - nodes[i + 1]) * ratio)
+        new_nodes.append(nodes[i] + ((nodes[i + 1] - nodes[i]) * ratio))
     
     return bezier_curve(new_nodes, ratio)
 
@@ -34,6 +34,10 @@ class BezierCurve:
 
     def is_running(self):
         return self.is_started() and not self.is_finished()
+
+    def start(self, dt):
+        self.reset()
+        self.t += dt
 
     def update(self, dt):
         if self.is_running():

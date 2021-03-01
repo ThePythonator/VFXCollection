@@ -17,6 +17,8 @@ public:
     bool is_started() { return t > 0; }
     bool is_finished() { return t == max_t; }
     bool is_running() { return is_started() && !is_finished(); }
+    
+    void start(double);
 
     void update(double);
     Point<T> calculate();

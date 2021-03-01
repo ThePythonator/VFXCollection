@@ -85,3 +85,9 @@ class Point:
         
     def __imod__(self, other):
         return self.__mod__(other)
+
+    def __str__(self):
+        return f"({self.x}, {self.y})"
+        
+    def __repr__(self):
+        return f"({self.x}, {self.y})"
