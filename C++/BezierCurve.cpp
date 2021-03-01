@@ -3,16 +3,16 @@
 template <typename T>
 Point<T> bezier_curve(std::vector<Point<T>> nodes, double ratio) {
     if (nodes.size() == 0) {
-        return dPoint(0, 0);
+        return Point<T>(0, 0);
     }
     else if (nodes.size() == 1) {
         return nodes[0];
     }
 
-    std::vector<dPoint<T>> new_nodes;
+    std::vector<Point<T>> new_nodes;
 
     for (uint8_t i = 0; i < nodes.size() - 1; i++) {
-        new_nodes.push_back(nodes[i] + (nodes[i] - nodes[i + 1]) * ratio);
+        new_nodes.push_back(nodes[i] + (nodes[i + 1] - nodes[i]) * ratio);
     }
 
     return bezier_curve(new_nodes, ratio);
