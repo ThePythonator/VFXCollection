@@ -1,7 +1,7 @@
 #include "BezierCurve.hpp"
 
 template <typename T>
-dPoint<T> bezier_curve(std::vector<dPoint<T>> nodes, double ratio) {
+Point<T> bezier_curve(std::vector<Point<T>> nodes, double ratio) {
     if (nodes.size() == 0) {
         return dPoint(0, 0);
     }
@@ -25,7 +25,7 @@ BezierCurve<T>::BezierCurve() {
 }
 
 template <typename T>
-BezierCurve<T>::BezierCurve(std::vector<dPoint<T>> nodes, double max_t) {
+BezierCurve<T>::BezierCurve(std::vector<Point<T>> nodes, double max_t) {
     this->nodes = nodes;
     t = 0;
     this->max_t = max_t;
@@ -43,6 +43,6 @@ void BezierCurve<T>::update(double dt) {
 }
 
 template <typename T>
-dPoint<T> BezierCurve<T>::calculate() {
+Point<T> BezierCurve<T>::calculate() {
     return bezier_curve(nodes, t / max_t);
 }

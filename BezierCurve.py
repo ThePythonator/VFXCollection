@@ -1,22 +1,19 @@
+import Point
+
 def get_distance(start, end):
     return [end[0] - start[0], end[1] - start[1]]
 
 
 def bezier_curve(nodes, ratio):
     if len(nodes) == 0:
-        return 0
+        return Point.Point(0, 0)
     elif len(nodes) == 1:
         return nodes[0]
 
     new_nodes = []
+
     for i in range(len(nodes) - 1):
-        node = list(nodes[i])
-        dist = get_distance(nodes[i], nodes[i+1])
-
-        node[0] += ratio * dist[0]
-        node[1] += ratio * dist[1]
-
-        new_nodes.append(node)
+        new_nodes.append(nodes[i] + (nodes[i] - nodes[i + 1]) * ratio)
     
     return bezier_curve(new_nodes, ratio)
 

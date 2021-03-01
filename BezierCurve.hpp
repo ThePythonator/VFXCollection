@@ -4,13 +4,13 @@
 #include "Point.hpp"
 
 template <typename T>
-dPoint<T> bezier_curve(std::vector<dPoint<T>>, double);
+Point<T> bezier_curve(std::vector<Point<T>>, double);
 
 template <typename T>
 class BezierCurve {
 public:
     BezierCurve();
-    BezierCurve(std::vector<dPoint<T>>, double=1);
+    BezierCurve(std::vector<Point<T>>, double=1);
 
     void reset() { t = 0; }
 
@@ -19,9 +19,9 @@ public:
     bool is_running() { return is_started() && !is_finished(); }
 
     void update(double);
-    dPoint<T> calculate();
+    Point<T> calculate();
 
 protected:
-    std::vector<dPoint<T>> nodes;
+    std::vector<Point<T>> nodes;
     double t, max_t;
 };
