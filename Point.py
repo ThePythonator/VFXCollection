@@ -60,4 +60,28 @@ class Point:
         return self.x == other.x and self.y == other.y
 
     def __ne__(self, other):
-        return not (self.x == other.x and self.y == other.y)
+        return not self.__eq__(other)
+        
+    def __neg__(self):
+        return Point(-self.x, -self.y)
+
+    def __pos__(self):
+        return Point(self.x, self.y)
+
+    def __iadd__(self, other):
+        return self.__add__(other)
+        
+    def __isub__(self, other):
+        return self.__sub__(other)
+        
+    def __imul__(self, other):
+        return self.__mul__(other)
+        
+    def __idiv__(self, other):
+        return self.__truediv__(other)
+        
+    def __ifloordiv__(self, other):
+        return self.__floordiv__(other)
+        
+    def __imod__(self, other):
+        return self.__mod__(other)
