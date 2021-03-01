@@ -8,7 +8,7 @@ def bezier_curve(nodes, ratio):
     elif len(nodes) == 1:
         return nodes[0]
 
-    newNodes = []
+    new_nodes = []
     for i in range(len(nodes) - 1):
         node = list(nodes[i])
         dist = get_distance(nodes[i], nodes[i+1])
@@ -16,15 +16,15 @@ def bezier_curve(nodes, ratio):
         node[0] += ratio * dist[0]
         node[1] += ratio * dist[1]
 
-        newNodes.append(node)
+        new_nodes.append(node)
     
-    return bezier_curve(newNodes, ratio)
+    return bezier_curve(new_nodes, ratio)
 
 class BezierCurve:
-    def __init__(self, nodes, maxT=1):
+    def __init__(self, nodes, max_t=1):
         self.nodes = nodes
         self.t = 0
-        self.maxT = maxT
+        self.max_t = max_t
 
     def reset(self):
         self.t = 0
@@ -33,7 +33,7 @@ class BezierCurve:
         return self.t > 0
 
     def is_finished(self):
-        return self.t == self.maxT
+        return self.t == self.max_t
 
     def is_running(self):
         return self.is_started() and not self.is_finished()
@@ -42,8 +42,8 @@ class BezierCurve:
         if self.is_running():
             self.t += dt
 
-            if self.t > self.maxT:
-                self.t = self.maxT
+            if self.t > self.max_t:
+                self.t = self.max_t
 
     def calculate(self):
-        return bezier_curve(self.nodes, self.t / self.maxT)
+        return bezier_curve(self.nodes, self.t / self.max_t)

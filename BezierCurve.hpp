@@ -15,7 +15,7 @@ public:
     void reset() { t = 0; }
 
     bool is_started() { return t > 0; }
-    bool is_finished() { return t == maxT; }
+    bool is_finished() { return t == max_t; }
     bool is_running() { return is_started() && !is_finished(); }
 
     void update(double);
@@ -23,5 +23,5 @@ public:
 
 protected:
     std::vector<dPoint<T>> nodes;
-    double t, maxT;
+    double t, max_t;
 };
