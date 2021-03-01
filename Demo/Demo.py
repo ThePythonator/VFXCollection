@@ -1,4 +1,4 @@
-import Point
+from ..Point import Point
 
 p = Point.Point(5, 6)
 p = p + Point.Point(1, 2)

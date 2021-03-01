@@ -1,4 +1,4 @@
-from .. import Point
+from ..Point import Point
 
 def test_point_default_values():
     point = Point.Point()

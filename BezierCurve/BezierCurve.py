@@ -1,4 +1,4 @@
-import Point
+from ..Point import Point
 
 def get_distance(start, end):
     return [end[0] - start[0], end[1] - start[1]]
