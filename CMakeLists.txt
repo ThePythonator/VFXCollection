@@ -2,7 +2,7 @@
 cmake_minimum_required(VERSION 3.8)
 
 project(VFXCollection)
-set(PROJECT_SOURCE Point.cpp Point.hpp BezierCurve.cpp BezierCurve.hpp)
+set(PROJECT_SOURCE Demo.cpp Demo.hpp Point.cpp Point.hpp BezierCurve.cpp BezierCurve.hpp)
 set(PROJECT_DISTRIBS LICENSE README.md)
 
 # Build configuration; approach this with caution!

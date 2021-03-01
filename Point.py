@@ -55,3 +55,9 @@ class Point:
             return Point(self.x % other[0], self.y % other[1])
         else:
             return Point(self.x % other, self.y % other)
+
+    def __eq__(self, other):
+        return self.x == other.x and self.y == other.y
+
+    def __ne__(self, other):
+        return not (self.x == other.x and self.y == other.y)

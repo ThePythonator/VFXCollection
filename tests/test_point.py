@@ -111,3 +111,11 @@ def test_point_tuple_floordivision():
 def test_point_tuple_modulus():
     point = Point.Point(8, 27) % (1, 5)
     assert point.x == 0 and point.y == 2
+
+def test_point_comparison_equals():
+    point = Point.Point(4, -5)
+    assert not (point != Point.Point(4, -5))
+
+def test_point_comparison_not_equals():
+    point = Point.Point(4, -5)
+    assert point == Point.Point(4, -5)
