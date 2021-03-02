@@ -1,7 +1,7 @@
 import Particle, Point
 
 class ParticleGenerator:
-    def __init__(self, particle_gravity=Point.Point(0,0), particle_lifetime=1, generation_delay=1, _particle_generate=None, _particle_render=None, _custom_update=None):
+    def __init__(self, particle_gravity=Point.Point2D(0,0), particle_lifetime=1, generation_delay=1, _particle_generate=None, _particle_render=None, _custom_update=None):
         self.particles = []
 
         self.particle_gravity = particle_gravity

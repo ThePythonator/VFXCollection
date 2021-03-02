@@ -2,7 +2,7 @@ import Point
 
 def bezier_curve(nodes, ratio):
     if len(nodes) == 0:
-        return Point.Point(0, 0)
+        return Point.Point2D(0, 0)
     elif len(nodes) == 1:
         return nodes[0]
 

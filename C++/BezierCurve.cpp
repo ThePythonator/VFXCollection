@@ -3,15 +3,15 @@
 namespace VFXCollection {
 
     template <typename T>
-    Point<T> bezier_curve(std::vector<Point<T>> nodes, double ratio) {
+    Point2D<T> bezier_curve(std::vector<Point2D<T>> nodes, double ratio) {
         if (nodes.size() == 0) {
-            return Point<T>(0, 0);
+            return Point2D<T>(0, 0);
         }
         else if (nodes.size() == 1) {
             return nodes[0];
         }
 
-        std::vector<Point<T>> new_nodes;
+        std::vector<Point2D<T>> new_nodes;
 
         for (uint8_t i = 0; i < nodes.size() - 1; i++) {
             new_nodes.push_back(nodes[i] + (nodes[i + 1] - nodes[i]) * ratio);
@@ -27,7 +27,7 @@ namespace VFXCollection {
     }
 
     template <typename T>
-    BezierCurve<T>::BezierCurve(std::vector<Point<T>> nodes, double max_t) {
+    BezierCurve<T>::BezierCurve(std::vector<Point2D<T>> nodes, double max_t) {
         this->nodes = nodes;
         t = 0;
         this->max_t = max_t;
@@ -51,7 +51,7 @@ namespace VFXCollection {
     }
 
     template <typename T>
-    Point<T> BezierCurve<T>::calculate() {
+    Point2D<T> BezierCurve<T>::calculate() {
         return bezier_curve(nodes, t / max_t);
     }
 

@@ -1,7 +1,7 @@
 import Point
 
 class Particle:
-    def __init__(self, position=Point.Point(0,0), velocity=Point.Point(0,0), gravity=Point.Point(0,0), colour=(255,255,255), size=1, lifetime=1):
+    def __init__(self, position=Point.Point2D(0,0), velocity=Point.Point2D(0,0), gravity=Point.Point2D(0,0), colour=(255,255,255), size=1, lifetime=1):
         self.position = position
         self.velocity = velocity
         self.gravity = gravity

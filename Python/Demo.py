@@ -20,7 +20,7 @@ def generate_particle(generator, position, speed, colours, size):
     # Get a random angle
     angle = random.randint(0, 360)
     # Calculate the particle velocity using that angle
-    velocity = Point.Point(speed * math.cos(angle), speed * math.sin(angle))
+    velocity = Point.Point2D(speed * math.cos(angle), speed * math.sin(angle))
     # Create a particle
     return Particle.Particle(position, velocity=velocity, gravity=generator.particle_gravity, lifetime=generator.particle_lifetime, colour=random.choice(colours), size=size)
 
@@ -35,16 +35,16 @@ colours = [
 # BezierCurve setup data
 # Control nodes - try changing them and see what happens!
 nodes = [
-   Point.Point(40, 40),
-   Point.Point(60, 160),
-   Point.Point(180, 80),
-   Point.Point(200, 200)
+   Point.Point2D(40, 40),
+   Point.Point2D(60, 160),
+   Point.Point2D(180, 80),
+   Point.Point2D(200, 200)
 ]
 # Total time curve takes to complete, in seconds
 max_t = 2
 
-# Define a Point() to spawn particles at
-particle_spawn = Point.Point(360, 120)
+# Define a Point2D() to spawn particles at
+particle_spawn = Point.Point2D(360, 120)
 
 # Create a window and set the caption
 screen = pygame.display.set_mode((480,240))
@@ -57,7 +57,7 @@ clock = pygame.time.Clock()
 bezier_curve = BezierCurve.BezierCurve(nodes, max_t)
 
 # Create an instance of the VFXCollection ParticleGenerator class
-particle_generator = ParticleGenerator.ParticleGenerator(particle_gravity=Point.Point(0,20), particle_lifetime=5, generation_delay=0.02, _particle_generate=generate_particle, _particle_render=render_particle)
+particle_generator = ParticleGenerator.ParticleGenerator(particle_gravity=Point.Point2D(0,50), particle_lifetime=5, generation_delay=0.02, _particle_generate=generate_particle, _particle_render=render_particle)
 
 # On startup, start everything so that people don't need to know what buttons to press in order to start anything
 # Start the curve
@@ -108,7 +108,7 @@ while True:
     bezier_curve.update(dt)
 
     # Update the particle_generator instance
-    particle_generator.update(dt, particle_spawn, 30, [colours[0], colours[1], colours[2]], 3)
+    particle_generator.update(dt, particle_spawn, 50, [colours[0], colours[1], colours[2]], 3)
 
 ##### Render section #####
 

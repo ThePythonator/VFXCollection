@@ -6,13 +6,13 @@
 namespace VFXCollection {
 
     template <typename T>
-    Point<T> bezier_curve(std::vector<Point<T>>, double);
+    Point2D<T> bezier_curve(std::vector<Point2D<T>>, double);
 
     template <typename T>
     class BezierCurve {
     public:
         BezierCurve();
-        BezierCurve(std::vector<Point<T>>, double=1);
+        BezierCurve(std::vector<Point2D<T>>, double=1);
 
         void reset() { t = 0; }
 
@@ -23,10 +23,10 @@ namespace VFXCollection {
         void start(double);
 
         void update(double);
-        Point<T> calculate();
+        Point2D<T> calculate();
 
     protected:
-        std::vector<Point<T>> nodes;
+        std::vector<Point2D<T>> nodes;
         double t, max_t;
     };
 

@@ -3,18 +3,18 @@
 namespace VFXCollection {
 
     template <typename T>
-    Point<T>::Point() {
+    Point2D<T>::Point2D() {
         x = y = 0;
     }
 
     template <typename T>
-    Point<T>::Point(T x, T y) {
+    Point2D<T>::Point2D(T x, T y) {
         this->x = x;
         this->y = y;
     }
 
     template <typename T>
-    T Point<T>::magnitude() {
+    T Point2D<T>::magnitude() {
         return std::sqrt(x * x + y * y);
     }
 
