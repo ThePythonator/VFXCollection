@@ -1,13 +1,28 @@
 # Import dependencies
-import pygame, sys
+import pygame, sys, math, random
 
 # Import VFXCollection files
 import Point
+import Particle
 import BezierCurve
+import ParticleGenerator
 
 # A simple function to render a point/circle in pygame
 def render_point(screen, point, colour, radius):
     pygame.draw.circle(screen, colour, [point.x, point.y], radius)
+
+# A simple function to be passed to the particle system
+def render_particle(particle, screen):
+    render_point(screen, particle.position, particle.colour, particle.size)
+
+# A simple function to create a Particle, to be passed to the particle system
+def generate_particle(generator, position, speed, colours, size):
+    # Get a random angle
+    angle = random.randint(0, 360)
+    # Calculate the particle velocity using that angle
+    velocity = Point.Point(speed * math.cos(angle), speed * math.sin(angle))
+    # Create a particle
+    return Particle.Particle(position, velocity=velocity, gravity=generator.particle_gravity, lifetime=generator.particle_lifetime, colour=random.choice(colours), size=size)
 
 # Some simple RGB values to use as colours
 colours = [
@@ -28,8 +43,11 @@ nodes = [
 # Total time curve takes to complete, in seconds
 max_t = 2
 
+# Define a Point() to spawn particles at
+particle_spawn = Point.Point(360, 120)
+
 # Create a window and set the caption
-screen = pygame.display.set_mode((240,240))
+screen = pygame.display.set_mode((480,240))
 pygame.display.set_caption("VFXCollection Demo")
 
 # Create a clock to limit framerate and calculate delta-time
@@ -37,6 +55,15 @@ clock = pygame.time.Clock()
 
 # Create an instance of the VFXCollection BezierCurve class
 bezier_curve = BezierCurve.BezierCurve(nodes, max_t)
+
+# Create an instance of the VFXCollection ParticleGenerator class
+particle_generator = ParticleGenerator.ParticleGenerator(particle_gravity=Point.Point(0,20), particle_lifetime=5, generation_delay=0.02, _particle_generate=generate_particle, _particle_render=render_particle)
+
+# On startup, start everything so that people don't need to know what buttons to press in order to start anything
+# Start the curve
+bezier_curve.start(0.001) # since dt isn't defined yet, just pass a tiny value in instead
+# Start the particle generator
+particle_generator.start()
 
 # Create an empty list of points to use to track the path of the curve over time.
 points = []
@@ -65,9 +92,23 @@ while True:
                 bezier_curve.start(dt)
                 # Clear the list of points
                 points = []
+            
+            elif event.key == pygame.K_RETURN:
+                # User has pressed return/enter
+                if particle_generator.is_running():
+                    # Stop and reset the particle generator
+                    particle_generator.stop()
+                    particle_generator.reset()
+
+                else:
+                    # Start the particle generator
+                    particle_generator.start()
 
     # Update the bezier_curve instance
     bezier_curve.update(dt)
+
+    # Update the particle_generator instance
+    particle_generator.update(dt, particle_spawn, 30, [colours[0], colours[1], colours[2]], 3)
 
 ##### Render section #####
 
@@ -87,6 +128,9 @@ while True:
         
     # Display the main point
     render_point(screen, bezier_curve.calculate(), colours[1], 5)
+
+    # Render the particles
+    particle_generator.render(screen)
 
     # Update the display
     pygame.display.flip()
