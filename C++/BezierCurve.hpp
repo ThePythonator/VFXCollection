@@ -3,27 +3,31 @@
 #include <vector>
 #include "Point.hpp"
 
-template <typename T>
-Point<T> bezier_curve(std::vector<Point<T>>, double);
+namespace VFXCollection {
 
-template <typename T>
-class BezierCurve {
-public:
-    BezierCurve();
-    BezierCurve(std::vector<Point<T>>, double=1);
+    template <typename T>
+    Point<T> bezier_curve(std::vector<Point<T>>, double);
 
-    void reset() { t = 0; }
+    template <typename T>
+    class BezierCurve {
+    public:
+        BezierCurve();
+        BezierCurve(std::vector<Point<T>>, double=1);
 
-    bool is_started() { return t > 0; }
-    bool is_finished() { return t == max_t; }
-    bool is_running() { return is_started() && !is_finished(); }
-    
-    void start(double);
+        void reset() { t = 0; }
 
-    void update(double);
-    Point<T> calculate();
+        bool is_started() { return t > 0; }
+        bool is_finished() { return t == max_t; }
+        bool is_running() { return is_started() && !is_finished(); }
+        
+        void start(double);
 
-protected:
-    std::vector<Point<T>> nodes;
-    double t, max_t;
-};
+        void update(double);
+        Point<T> calculate();
+
+    protected:
+        std::vector<Point<T>> nodes;
+        double t, max_t;
+    };
+
+}

@@ -2,28 +2,32 @@
 
 #include <cmath>
 
-template <typename T>
-class Point {
-public:
-    T x, y;
+namespace VFXCollection {
 
-    Point();
-    Point(T, T);
+    template <typename T>
+    class Point {
+    public:
+        T x, y;
 
-    T magnitude();
+        Point();
+        Point(T, T);
 
-    Point<T> operator+(const Point<T>& other) { return Point<T>(x + other.x, y + other.y); }
-    Point<T> operator-(const Point<T>& other) { return Point<T>(x - other.x, y - other.y); }
-    Point<T> operator*(const Point<T>& other) { return Point<T>(x * other.x, y * other.y); }
-    Point<T> operator/(const Point<T>& other) { return Point<T>(x / other.x, y / other.y); }
-    
-    Point<T> operator+(T other) { return Point<T>(x + other, y + other); }
-    Point<T> operator-(T other) { return Point<T>(x - other, y - other); }
-    Point<T> operator*(T other) { return Point<T>(x * other, y * other); }
-    Point<T> operator/(T other) { return Point<T>(x / other, y / other); }
-    
-    Point<T> operator%(int other) { return Point<T>(x % other, y % other); }
-    
-    bool operator==(const Point<T>& other) { return x == other.x && y == other.y; }
-    bool operator!=(const Point<T>& other) { return !(x == other.x && y == other.y); }
-};
+        T magnitude();
+
+        Point<T> operator+(const Point<T>& other) { return Point<T>(x + other.x, y + other.y); }
+        Point<T> operator-(const Point<T>& other) { return Point<T>(x - other.x, y - other.y); }
+        Point<T> operator*(const Point<T>& other) { return Point<T>(x * other.x, y * other.y); }
+        Point<T> operator/(const Point<T>& other) { return Point<T>(x / other.x, y / other.y); }
+        
+        Point<T> operator+(T other) { return Point<T>(x + other, y + other); }
+        Point<T> operator-(T other) { return Point<T>(x - other, y - other); }
+        Point<T> operator*(T other) { return Point<T>(x * other, y * other); }
+        Point<T> operator/(T other) { return Point<T>(x / other, y / other); }
+        
+        Point<T> operator%(int other) { return Point<T>(x % other, y % other); }
+        
+        bool operator==(const Point<T>& other) { return x == other.x && y == other.y; }
+        bool operator!=(const Point<T>& other) { return !(x == other.x && y == other.y); }
+    };
+
+}
