@@ -2,16 +2,15 @@
 
 namespace VFXCollection {
 
-    template <typename T>
-    Point2D<T> bezier_curve(std::vector<Point2D<T>> nodes, double ratio) {
+    Point2D<double> bezier_curve(std::vector<Point2D<double>> nodes, double ratio) {
         if (nodes.size() == 0) {
-            return Point2D<T>(0, 0);
+            return Point2D<double>(0, 0);
         }
         else if (nodes.size() == 1) {
             return nodes[0];
         }
 
-        std::vector<Point2D<T>> new_nodes;
+        std::vector<Point2D<double>> new_nodes;
 
         for (uint8_t i = 0; i < nodes.size() - 1; i++) {
             new_nodes.push_back(nodes[i] + (nodes[i + 1] - nodes[i]) * ratio);
@@ -20,27 +19,23 @@ namespace VFXCollection {
         return bezier_curve(new_nodes, ratio);
     }
 
-    template <typename T>
-    BezierCurve<T>::BezierCurve() {
+    BezierCurve::BezierCurve() {
         t = 0;
         max_t = 1;
     }
 
-    template <typename T>
-    BezierCurve<T>::BezierCurve(std::vector<Point2D<T>> nodes, double max_t) {
+    BezierCurve::BezierCurve(std::vector<Point2D<double>> nodes, double max_t) {
         this->nodes = nodes;
         t = 0;
         this->max_t = max_t;
     }
 
-    template <typename T>
-    void BezierCurve<T>::start(double dt) {
-        reset()
+    void BezierCurve::start(double dt) {
+        reset();
         t += dt;
     }
 
-    template <typename T>
-    void BezierCurve<T>::update(double dt) {
+    void BezierCurve::update(double dt) {
         if (is_running()) {
             t += dt;
 
@@ -50,8 +45,7 @@ namespace VFXCollection {
         }
     }
 
-    template <typename T>
-    Point2D<T> BezierCurve<T>::calculate() {
+    Point2D<double> BezierCurve::calculate() {
         return bezier_curve(nodes, t / max_t);
     }
 
