@@ -24,10 +24,7 @@ namespace VFXCollection {
         Point2D<T> operator*(T other) { return Point2D<T>(x * other, y * other); }
         Point2D<T> operator/(T other) { return Point2D<T>(x / other, y / other); }
         
-        Point2D<T> operator%(int other) { return Point2D<T>(x % other, y % other); }
-        
         bool operator==(const Point2D<T>& other) { return x == other.x && y == other.y; }
         bool operator!=(const Point2D<T>& other) { return !(x == other.x && y == other.y); }
     };
-
 }
