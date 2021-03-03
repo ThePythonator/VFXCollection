@@ -30,6 +30,22 @@ namespace VFXCollection {
         this->max_t = max_t;
     }
 
+    void BezierCurve::reset() {
+        t = 0;
+    }
+
+    bool BezierCurve::is_started() {
+        return t > 0;
+    }
+
+    bool BezierCurve::is_finished() {
+        return t == max_t;
+    }
+
+    bool BezierCurve::is_running() {
+        return is_started() && !is_finished();
+    }
+
     void BezierCurve::start(double dt) {
         reset();
         t += dt;

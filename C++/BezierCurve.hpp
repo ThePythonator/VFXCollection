@@ -12,11 +12,11 @@ namespace VFXCollection {
         BezierCurve();
         BezierCurve(std::vector<Point2D<double>>, double=1);
 
-        void reset() { t = 0; }
+        void reset();
 
-        bool is_started() { return t > 0; }
-        bool is_finished() { return t == max_t; }
-        bool is_running() { return is_started() && !is_finished(); }
+        bool is_started();
+        bool is_finished();
+        bool is_running();
         
         void start(double);
 
