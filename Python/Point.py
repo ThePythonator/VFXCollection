@@ -9,7 +9,7 @@ class Point2D:
         return math_sqrt(self.x ** 2 + self.y ** 2)
     
     def normalise(self):
-        self /= self.magnitude()
+        return self / self.magnitude()
 
     def __add__(self, other):
         if isinstance(other, Point2D):
